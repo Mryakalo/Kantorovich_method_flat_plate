@@ -1,11 +1,19 @@
 from Phi_function import phi_function
+from Phi_derivative_x import phi_derivative_x
 from sympy import diff
 
 
+def phi_derivative_w(w_k_1_d, dw_dx_k_1_d, w_k_d, dw_dx_k_d, x_k_1_d, x_k_d, x_d, diff_parameter_d, order_phi_d):
 
-def phi_derivative_w(w_k_1_d, dw_dx_k_1_d, w_k_d, dw_dx_k_d, x_k_1_d, x_k_d, x_d):
-    int_parameters = w_k_1_d, dw_dx_k_1_d, w_k_d, dw_dx_k_d, x_k_1_d, x_k_d, x_d
-    phi_func = phi_function(*int_parameters)
-    phi_derivative = diff(phi_func, w_k_1_d)
-    return phi_derivative
-    return d
+    if order_phi_d == 0:
+        int_parameters = w_k_1_d, dw_dx_k_1_d, w_k_d, dw_dx_k_d, x_k_1_d, x_k_d, x_d
+        phi_func = phi_function(*int_parameters)
+    elif order_phi_d > 0:
+        int_parameters = w_k_1_d, dw_dx_k_1_d, w_k_d, dw_dx_k_d, x_k_1_d, x_k_d, x_d, order_phi_d
+        phi_func = phi_derivative_x(*int_parameters)
+    else:
+        phi_func = 0
+
+    result = diff(phi_func, diff_parameter_d)
+
+    return result
