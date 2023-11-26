@@ -1,8 +1,10 @@
 from Phi_function import phi_function
 from Linear_system_solver_for_coefficients import calc_coefficients
 from Phi_derivative_w import phi_derivative_w
-from sympy import symbols
+from sympy import symbols, integrate
 from Es_derivative_w import es_derivative_w
+from Integral_dEs_dw import integral
+from scipy.integrate import quad
 
 # Исходные параметры пластины
 a_plate: float = 6  # Длина в направлении x [м]
@@ -22,5 +24,6 @@ print(phi_derivative_w(w_k_1, dw_dx_k_1, w_k, dw_dx_k, x_k_1, x_k, x, w_k_1, 1))
 print(phi_derivative_w(w_k_1, dw_dx_k_1, w_k, dw_dx_k, x_k_1, x_k, x, w_k_1, 2))
 
 print(es_derivative_w(b_plate, q_load, mu, d_stiffness, w_k_1, dw_dx_k_1, w_k, dw_dx_k, x_k_1, x_k, x, w_k_1))
-
-
+print(integral(x_k_1, x_k, b_plate, q_load, mu, d_stiffness, w_k_1, dw_dx_k_1, w_k, dw_dx_k, x_k_1, x_k, x, w_k_1))
+# result = integrate(integral(w_k_1, x, w_k), (x, x_k_1, x_k))
+# print(result)
