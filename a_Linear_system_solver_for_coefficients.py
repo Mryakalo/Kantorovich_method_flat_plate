@@ -14,8 +14,8 @@ def calc_coefficients(w_k_1_c, dw_dx_k_1_c, w_k_c, dw_dx_k_c, x_k_1_c, x_k_c):
     b_1_k = str(solution)[str(solution).find('b_1:') + len('b_1:'): str(solution).rfind(', b_2')]
     b_2_k = str(solution)[str(solution).find('b_2:') + len('b_1:'): str(solution).rfind(', b_3')]
     b_3_k = str(solution)[str(solution).find('b_3:') + len('b_1:'): str(solution).rfind('}')]
-    print('b0', b_0_k)
-    print('b1', b_1_k)
-    print('b2', b_2_k)
-    print('b3', b_3_k)
+    # print('b0', b_0_k)
+    # print('b1', b_1_k)
+    # print('b2', b_2_k)
+    # print('b3', b_3_k)
     return b_0_k, b_1_k, b_2_k, b_3_k

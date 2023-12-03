@@ -32,5 +32,5 @@ def es_derivative_w(b_es, q_es, mu_es, d_es, w_k_1_es, dw_dx_k_1_es, w_k_es, dw_
              + str(a_3) + '*' + str(phi) + '*' + str(d_phi_2_d_w) + '+'
              + '2 *' + str(a_4) + '*' + str(phi_1) + '*' + str(d_phi_1_d_w) + '-'
              + str(q_1) + '*' + str(d_phi_d_w))
-    print('dE/dw', de_dw)
+    # print('dE/dw', de_dw)
     return de_dw
