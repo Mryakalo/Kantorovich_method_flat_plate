@@ -1,5 +1,5 @@
-from Phi_function import phi_function
-from Phi_derivative_x import phi_derivative_x
+from b_Phi_function import phi_function
+from c_Phi_derivative_x import phi_derivative_x
 from sympy import diff
 
 
