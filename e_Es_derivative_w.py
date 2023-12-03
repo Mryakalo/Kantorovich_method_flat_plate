@@ -1,15 +1,11 @@
 from b_Phi_function import phi_function
 from c_Phi_derivative_x import phi_derivative_x
 from d_Phi_derivative_w import phi_derivative_w
+from sympy import sympify
 
 
-def es_derivative_w(b_es, q_es, mu_es, d_es, w_k_1_es, dw_dx_k_1_es, w_k_es, dw_dx_k_es, x_k_1_es,
+def es_derivative_w(a_1_in, a_2_in, a_3_in, a_4_in, q_1_in, w_k_1_es, dw_dx_k_1_es, w_k_es, dw_dx_k_es, x_k_1_es,
                     x_k_es, x_es, diff_parameter_es):
-    a_1 = 3 * b_es / 8 * d_es / 2
-    a_2 = (2 * 3.14 ** 4) / b_es ** 3 * d_es / 2
-    a_3 = - mu_es * 3.14 ** 2 / b_es * d_es / 2
-    a_4 = (1 - mu_es) * 3.14 ** 2 / b_es * d_es / 2
-    q_1 = b_es * q_es / 2
     # Функция фи
     phi = phi_function(w_k_1_es, dw_dx_k_1_es, w_k_es, dw_dx_k_es, x_k_1_es, x_k_es, x_es)
     # Первая производная функции фи по x
@@ -26,11 +22,28 @@ def es_derivative_w(b_es, q_es, mu_es, d_es, w_k_1_es, dw_dx_k_1_es, w_k_es, dw_
     d_phi_2_d_w = phi_derivative_w(w_k_1_es, dw_dx_k_1_es, w_k_es, dw_dx_k_es,
                                    x_k_1_es, x_k_es, x_es, diff_parameter_es, 2)
     # Вариация функционала Es по w (пункт e, уравнение 7)
-    de_dw = ('2 *' + str(a_1) + '*' + str(phi_2) + '*' + str(d_phi_2_d_w) + '+'
-             + '2 *' + str(a_2) + '*' + str(phi) + '*' + str(d_phi_d_w) + '+'
-             + str(a_3) + '*' + str(phi_2) + '*' + str(d_phi_d_w) + '+'
-             + str(a_3) + '*' + str(phi) + '*' + str(d_phi_2_d_w) + '+'
-             + '2 *' + str(a_4) + '*' + str(phi_1) + '*' + str(d_phi_1_d_w) + '-'
-             + str(q_1) + '*' + str(d_phi_d_w))
+    a_1_str = str(a_1_in)
+    a_2_str = str(a_2_in)
+    a_3_str = str(a_3_in)
+    a_4_str = str(a_4_in)
+    q_1_str = str(q_1_in)
+    phi_2_str = '(' + str(phi_2) + ')'
+    # print(phi_2_str)
+    d_phi_2_d_w_str = '(' + str(d_phi_2_d_w) + ')'
+    # print(d_phi_2_d_w_str)
+    phi_str = '(' + str(phi) + ')'
+    # print(phi_str)
+    d_phi_d_w_str = '(' + str(d_phi_d_w) + ')'
+    # print(d_phi_d_w_str)
+    phi_1_str = '(' + str(phi_1) + ')'
+    # print(phi_1_str)
+    d_phi_1_d_w_str = '(' + str(d_phi_1_d_w) + ')'
+    # print(d_phi_1_d_w_str)
+    de_dw = sympify('2 *' + a_1_str + '*' + phi_2_str + '*' + d_phi_2_d_w_str + '+'
+             + '2 *' + a_2_str + '*' + phi_str + '*' + d_phi_d_w_str + '+'
+             + a_3_str + '*' + phi_2_str + '*' + d_phi_d_w_str + '+'
+             + a_3_str + '*' + phi_str + '*' + d_phi_2_d_w_str + '+'
+             + '2 *' + a_4_str + '*' + phi_1_str + '*' + d_phi_1_d_w_str + '-'
+             + q_1_str + '*' + d_phi_d_w_str)
     # print('dE/dw', de_dw)
     return de_dw

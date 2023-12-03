@@ -13,4 +13,5 @@ def phi_derivative_x(w_k_1_d, dw_dx_k_1_d, w_k_d, dw_dx_k_d, x_k_1_d, x_k_d, x_d
         result = phi_derivative_2nd
     else:
         result = 'Неправильный порядок производной'
+    # print('dphi/dx = ', result)
     return result

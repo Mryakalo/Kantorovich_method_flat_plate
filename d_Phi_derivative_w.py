@@ -15,5 +15,7 @@ def phi_derivative_w(w_k_1_d, dw_dx_k_1_d, w_k_d, dw_dx_k_d, x_k_1_d, x_k_d, x_d
         phi_func = 0
 
     result = diff(phi_func, diff_parameter_d)
-
+    # print('phi_func = ', phi_func)
+    # print('diff_parameter = ', diff_parameter_d)
+    # print('dphi/dw = ', result)
     return result
