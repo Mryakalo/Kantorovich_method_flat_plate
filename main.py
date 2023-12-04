@@ -8,7 +8,7 @@ h_plate: float = 0.2  # Толщина пластины [м]
 q_load: float = 0.01  # Распределенная нагрузка [МН/м2]
 E_modulus: float = 40000  # Модуль деформации материала [МПа]
 mu: float = 0.2  # Коэффициент Пуассона
-n_elem: int = 20  # Количество элементов, на которые разбивается пластина в направлении x
+n_elem: int = 4  # Количество элементов, на которые разбивается пластина в направлении x
 n_nodes: int = n_elem + 1
 d_stiffness: float = E_modulus * h_plate ** 3 / (12 * (1 - mu ** 2))
 
@@ -57,8 +57,8 @@ left_part[n_nodes - 1][n_nodes + 2] = 2 * a_1 / (a_plate / n_elem) ** 2
 left_part[n_nodes - 1][n_nodes + 1] = - 4 * a_1 / (a_plate / n_elem) ** 2
 left_part[n_nodes - 1][n_nodes] = a_3 - 2 * a_4 + 2 * a_1 / (a_plate / n_elem) ** 2
 
-left_part[2 * n_nodes - 2][2 * n_nodes - 2] = 2 * a_1 / (a_plate / n_elem)
-left_part[2 * n_nodes - 2][2 * n_nodes - 1] = - 2 * a_1 / (a_plate / n_elem)
+left_part[2 * n_nodes - 2][2 * n_nodes - 2] = - 2 * a_1 / (a_plate / n_elem)
+left_part[2 * n_nodes - 2][2 * n_nodes - 1] = 2 * a_1 / (a_plate / n_elem)
 left_part[2 * n_nodes - 2][n_nodes - 1] = a_3
 
 left_part[2 * n_nodes - 1][2 * n_nodes - 3] = 2 * a_1 / (a_plate / n_elem) ** 2
@@ -69,6 +69,6 @@ left_part[2 * n_nodes - 1][2 * n_nodes - 1] = a_3 - 2 * a_4 + 2 * a_1 / (a_plate
 
 vector_w = np.linalg.solve(left_part, right_part)
 print(vector_w)
-w_middle = vector_w[int(n_elem/2)] * np.sin(3.14 / 2)
+w_middle = vector_w[int(n_elem/2)] * (np.sin(3.14 / 2)) ** 2
 print(w_middle)
 print(q_load * a_plate * b_plate ** 4 / 384 / E_modulus / (a_plate * h_plate ** 3 / 12))
