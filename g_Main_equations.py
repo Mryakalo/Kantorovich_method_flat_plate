@@ -1,5 +1,5 @@
 from f_Integral_dEs_dw import integral_des_dw
-from sympy import symbols, sympify, lambdify
+from sympy import symbols, lambdify
 from sympy import diff
 import numpy as np
 

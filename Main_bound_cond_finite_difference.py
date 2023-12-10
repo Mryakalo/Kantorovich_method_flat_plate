@@ -8,7 +8,7 @@ h_plate: float = 0.2  # Толщина пластины [м]
 q_load: float = 0.01  # Распределенная нагрузка [МН/м2]
 E_modulus: float = 40000  # Модуль деформации материала [МПа]
 mu: float = 0.2  # Коэффициент Пуассона
-n_elem: int = 4  # Количество элементов, на которые разбивается пластина в направлении x
+n_elem: int = 10  # Количество элементов, на которые разбивается пластина в направлении x
 n_nodes: int = n_elem + 1
 d_stiffness: float = E_modulus * h_plate ** 3 / (12 * (1 - mu ** 2))
 
@@ -46,8 +46,6 @@ for i in range(1, n_nodes - 1, 1):
     right_part[i - 1] = right_part_temp[0]
     right_part[i - 1 + n_nodes] = right_part_temp[1]
 
-# print(left_part)
-# print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 # Заполнение уравнений, получающихся из граничных условий
 left_part[n_nodes - 2][n_nodes + 1] = 2 * a_1 / (a_plate / n_elem)
 left_part[n_nodes - 2][n_nodes] = - 2 * a_1 / (a_plate / n_elem)
